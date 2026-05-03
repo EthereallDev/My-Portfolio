@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oleksandr Pokryshchuk — Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg: #F4F2EE;
+    --surface: #FFFFFF;
+    --surface2: #EDEAE4;
+    --ink: #1A1714;
+    --ink2: #4A4540;
+    --ink3: #8A837A;
+    --accent: #2952CC;
+    --accent2: #1A3A9E;
+    --accent-light: #E8EDFF;
+    --teal: #0D9488;
+    --teal-light: #CCFBF1;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --border: #DDD9D2;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--mono);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 72px 32px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(41,82,204,0.18);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 120px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(13,148,136,0.12);
+  }
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7C9CFF;
+    border: 1px solid rgba(124,156,255,0.4);
+    padding: 5px 12px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+  .hero-name {
+    font-family: var(--sans);
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero-name span { color: #7C9CFF; }
+  .hero-roles {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .hero-role {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .role-py { background: rgba(41,82,204,0.25); color: #A8BFFF; border: 1px solid rgba(41,82,204,0.4); }
+  .role-fe { background: rgba(13,148,136,0.25); color: #7EEEE8; border: 1px solid rgba(13,148,136,0.4); }
+  .role-cad { background: rgba(217,119,6,0.25); color: #FBBF5A; border: 1px solid rgba(217,119,6,0.4); }
+  .hero-tagline {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.03em;
+  }
+  .hero-meta-item strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.85;
+  }
+  .about-langs h4 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-name { color: var(--ink2); }
+  .lang-level {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .lang-level.native { background: var(--teal-light); color: var(--teal); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .skill-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-py { background: var(--accent-light); }
+  .icon-web { background: var(--teal-light); }
+  .icon-cad { background: var(--amber-light); }
+  .icon-hw { background: #FCE7F3; }
+  .icon-soft { background: #EDE9FE; }
+  .skill-card-title {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .skill-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--surface2);
+    color: var(--ink2);
+    border: 1px solid var(--border);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-left { padding-top: 4px; }
+  .exp-company {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .exp-period {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .exp-type {
+    font-size: 10px;
+    color: var(--ink3);
+    background: var(--surface2);
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .exp-role {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .exp-achievements { list-style: none; }
+  .exp-achievements li {
+    font-size: 13px;
+    color: var(--ink2);
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px dashed var(--border);
+    position: relative;
+    line-height: 1.7;
+  }
+  .exp-achievements li:last-child { border-bottom: none; }
+  .exp-achievements li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 12px;
+  }
+  .exp-achievements strong {
+    color: var(--ink);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 12px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .project-card:nth-child(2)::before { background: var(--teal); }
+  .project-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    margin-bottom: 14px;
+    font-family: var(--mono);
+  }
+  .project-title {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.75;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .edu-institution {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .edu-specialty {
+    font-size: 13px;
+    color: var(--ink2);
+    margin-bottom: 14px;
+  }
+  .edu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    background: var(--teal-light);
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+  .edu-year {
+    text-align: right;
+  }
+  .edu-year-num {
+    font-family: var(--sans);
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .edu-year-label {
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+  }
+  .contact-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 10px;
+  }
+  .contact-card-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    word-break: break-all;
+  }
+  .contact-card-value.link { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 24px 32px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner page-wrap">
+    <div class="hero-tag">// Portfolio 2024</div>
+    <h1 class="hero-name">Oleksandr<br><span>Pokryshchuk</span></h1>
+    <div class="hero-roles">
+      <span class="hero-role role-py">Python Developer</span>
+      <span class="hero-role role-fe">Frontend Engineer</span>
+      <span class="hero-role role-cad">CAD Designer</span>
+    </div>
+    <p class="hero-tagline">Multidisciplinary specialist bridging software development, web engineering, and mechanical design — turning complex requirements into automated, precise solutions.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">📍 <strong>Lüdenscheid, Germany</strong></div>
+      <div class="hero-meta-item">📞 <strong>+49 152 11066216</strong></div>
+      <div class="hero-meta-item">⌗ <strong>github.com/EthereallDev</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-label">// 01</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-text">Multifunctional specialist focused on process automation and engineering design. I have hands-on experience in Python development (AI, bots, data processing), creating web interfaces, and 3D engineering design in CAD systems. I adapt quickly to new technologies and can work at the intersection of programming and electronics (Arduino). Seeking opportunities in software development, AI, or engineering design — ready for complex multidisciplinary projects.</p>
+      </div>
+      <div class="about-langs">
+        <h4>Languages</h4>
+        <div class="lang-item">
+          <span class="lang-name">Русский (Russian)</span>
+          <span class="lang-level native">Native</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Українська (Ukrainian)</span>
+          <span class="lang-level native">Native</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">English</span>
+          <span class="lang-level">Full Professional</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Deutsch (German)</span>
+          <span class="lang-level" style="background:#FEF3C7;color:#D97706;">Learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">// 02</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon icon-py">🐍</div>
+          <div class="skill-card-title">Programming</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Aiogram</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Automation</span>
+          <span class="skill-tag">Bots</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">C++ (Arduino)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon icon-web">🌐</div>
+          <div class="skill-card-title">Web Development</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Frontend</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">UI/UX</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon icon-cad">⚙️</div>
+          <div class="skill-card-title">CAD & Engineering</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">3D Modeling</span>
+          <span class="skill-tag">Technical Docs</span>
+          <span class="skill-tag">Drafting</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon icon-hw">🔌</div>
+          <div class="skill-card-title">Hardware & Soft Skills</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">Electronics</span>
+          <span class="skill-tag">Fast Learning</span>
+          <span class="skill-tag">Analytical Thinking</span>
+          <span class="skill-tag">Big Data</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-label">// 03</div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-company">VSP "FKISIT KNEU named after V. Hetman"</div>
+        <div class="exp-period">2020 — Present</div>
+        <div class="exp-type">Project Activity</div>
+      </div>
+      <div>
+        <div class="exp-role">Developer / Engineer</div>
+        <ul class="exp-achievements">
+          <li>
+            <strong>Automation of Records</strong>
+            Developed and implemented a student record management system for the college, systematizing data and simplifying access to academic statistics.
+          </li>
+          <li>
+            <strong>CAD Design</strong>
+            Produced a series of technical drawings and 3D models for internal institutional needs, ensuring compliance with engineering standards.
+          </li>
+          <li>
+            <strong>Web Development</strong>
+            Participated in the design and development of applications for college needs.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-company">Freelance</div>
+        <div class="exp-period">2020 — Present</div>
+        <div class="exp-type">Independent</div>
+      </div>
+      <div>
+        <div class="exp-role">Python Developer / CAD Designer</div>
+        <ul class="exp-achievements">
+          <li>
+            <strong>Python Development</strong>
+            Designed and deployed Telegram bots built on Aiogram, automating client communication and business processes.
+          </li>
+          <li>
+            <strong>Engineering Design</strong>
+            Delivered detailed 3D documentation and component models for clients (SolidWorks / AutoCAD).
+          </li>
+          <li>
+            <strong>Frontend Projects</strong>
+            Portfolio refresh, reconstruction and optimization of web interfaces using modern HTML/CSS/JS stack.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <div class="section-label">// 04</div>
+    <h2 class="section-title">Personal Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">PROJECT_01</div>
+        <div class="project-title">Arduino Automation</div>
+        <p class="project-desc">Development of software-controlled device prototypes using C++. Hardware–software integration, sensor management, and custom automation logic for embedded systems.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-num">PROJECT_02</div>
+        <div class="project-title">GitHub Portfolio</div>
+        <p class="project-desc">Regular updates to public repositories showcasing Python code samples, Aiogram bot implementations, and Frontend components. Active development and documentation maintenance at <strong>github.com/EthereallDev</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">// 05</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div>
+        <div class="edu-institution">VSP "Faculty of Computer Information Systems and Technologies of KNEU named after V. Hetman"</div>
+        <div class="edu-specialty">Specialty: Electronics and Radio Electronics</div>
+        <div class="edu-badge">🎓 Graduation Year: 2026</div>
+      </div>
+      <div class="edu-year">
+        <div class="edu-year-num">2026</div>
+        <div class="edu-year-label">Expected</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="section-label">// 06</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-label">Location</div>
+        <div class="contact-card-value">Lüdenscheid, Germany</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Phone</div>
+        <div class="contact-card-value">+49 152 11066216</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">GitHub</div>
+        <div class="contact-card-value link">github.com/EthereallDev</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page-wrap -->
+
+<div class="footer">
+  Oleksandr Pokryshchuk · Python Developer | Frontend Engineer | CAD Designer · github.com/EthereallDev
+</div>
+
+</body>
+</html>
